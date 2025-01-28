@@ -1,16 +1,13 @@
 const express = require('express');
 const route = express.Router();
+
 const homeController = require('./src/controllers/homeController');
+const loginController = require('./src/controllers/loginController');
 
-function meuMiddleware(req, res, next) {
-  req.session = { nome: 'Lucas', sobrenome: 'Dogo' };
+// Rotas da Home
+route.get('/', homeController.index);
 
-  next();
-}
-
-//route.get('/', meuMiddleware, homeController.paginaInicial);
-
-route.get('/', homeController.paginaInicial);
-route.post('/', homeController.trataPost);
+// Rotas de Login
+route.get('/login/index', loginController.index);
 
 module.exports = route;
